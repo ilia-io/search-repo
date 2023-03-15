@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>search repos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="main">
+      <div class="main__wrapper container">
+        <section class="search">
+          <h1 class="search__title">Поиск репозиториев GitHub</h1>
+          <form class="search__form">
+            <input type="text" name="text" class="search__text" />
+            <input
+              type="submit"
+              name="submitBtn"
+              class="search__btn"
+              value="Искать"
+            />
+          </form>
+        </section>
+        <section class="repo">
+          <ul class="repo__list">
+            <li class="repo__item">
+              <p class="repo__name">
+                <a
+                  href="https://api.github.com/repos/chvin/react-tetris"
+                  class="repo__link"
+                  target="_blank"
+                  >react-tetris</a
+                >
+              </p>
+              <p class="repo__description">
+                Use React, Redux, Immutable to code Tetris. 🎮
+              </p>
+              <p class="repo__language">JavaScript</p>
+              <p class="repo__owner">chvin</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
