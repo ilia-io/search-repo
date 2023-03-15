@@ -1,0 +1,126 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #eee;
+  color: #222;
+  /* background-color: #5d84cc;
+  background: -moz-linear-gradient(-45deg, #6687c4 0%, #84ae9a 100%);
+  background: -webkit-linear-gradient(-45deg, #6687c4 0%, #84ae9a 100%); */
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.container {
+  max-width: 1171px;
+  margin: 0 auto;
+}
+
+.error {
+  color: crimson;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.main {
+}
+.main__wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search__title {
+  margin-bottom: 20px;
+}
+.search__form {
+  width: 310px;
+  display: flex;
+  justify-content: space-between;
+}
+.search__form > * {
+  border-radius: 4px;
+}
+.search__text {
+  border: 2px solid transparent;
+  padding: 4px;
+
+  width: 80%;
+}
+.search__btn {
+  margin-left: 6px;
+  width: 20%;
+
+  position: relative;
+  box-shadow: 0 3px 0px #333;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.2s ease;
+}
+.search__btn:active {
+  box-shadow: 0 0px 0px #333;
+  top: 3px;
+}
+.repo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 40px;
+}
+.repo__list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.repo__item {
+  background-color: #ddd;
+  /* background: -moz-linear-gradient(-45deg, #6687c4 0%, #8fa0c1 100%);
+  background: -webkit-linear-gradient(-45deg, #6687c4 0%, #8fa0c1 100%); */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  padding: 10px 20px;
+  width: 310px;
+}
+.repo__label {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  padding: 0 4px;
+
+  margin-top: 10px;
+}
+.repo__name {
+}
+.repo__link {
+}
+.repo__description {
+}
+.repo__language {
+}
+.repo__owner {
+}

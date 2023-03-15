@@ -19,7 +19,12 @@
         <section class="search">
           <h1 class="search__title">Поиск репозиториев GitHub</h1>
           <form class="search__form">
-            <input type="text" name="text" class="search__text" />
+            <input
+              type="text"
+              name="text"
+              class="search__text"
+              placeholder="Введите название..."
+            />
             <input
               type="submit"
               name="submitBtn"
@@ -31,18 +36,22 @@
         <section class="repo">
           <ul class="repo__list">
             <li class="repo__item">
+              <p class="repo__label">Название:</p>
               <p class="repo__name">
                 <a
-                  href="https://api.github.com/repos/chvin/react-tetris"
+                  href="https://github.com/chvin/react-tetris"
                   class="repo__link"
                   target="_blank"
                   >react-tetris</a
                 >
               </p>
+              <p class="repo__label">Описание:</p>
               <p class="repo__description">
                 Use React, Redux, Immutable to code Tetris. 🎮
               </p>
+              <p class="repo__label">Язык:</p>
               <p class="repo__language">JavaScript</p>
+              <p class="repo__label">Автор:</p>
               <p class="repo__owner">chvin</p>
             </li>
           </ul>
