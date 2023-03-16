@@ -17,28 +17,31 @@ inputText.addEventListener('blur', () => {
 });
 
 inputText.addEventListener('focus', () => {
-  if (inputText.nextElementSibling.classList.contains('error')) {
-    inputText.nextElementSibling.remove();
-    inputText.style.border = '2px solid transparent';
-  }
+  removeErrorMsg();
 });
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
+  removeErrorMsg();
   if (
-    !inputText.nextElementSibling.classList.contains('error') &&
+    !inputText.nextElementSibling?.classList.contains('error') &&
     inputString.length < 3
   ) {
     errorMessage(inputText);
   }
 
-  if (inputString.length < 3) {
-    console.log(inputString.length);
-  } else {
+  if (!(inputString.length < 3)) {
     go();
   }
 });
+
+function removeErrorMsg() {
+  if (inputText.nextElementSibling?.classList.contains('error')) {
+    inputText.nextElementSibling.remove();
+    inputText.style.border = '2px solid transparent';
+  }
+}
 
 function makeQuery(inputStr) {
   resultUrl = `${API_URL}/search/repositories?q=${inputStr}`;
@@ -46,7 +49,7 @@ function makeQuery(inputStr) {
 
 function errorMessage(element) {
   const msg = document.createElement('div');
-  msg.innerHTML = 'Заполните это поле (минимум 3 символа)';
+  msg.innerHTML = 'Заполните это поле (мин. 3 символа)';
   msg.classList.add('error');
   element.after(msg);
   element.style.border = '2px solid crimson';
@@ -55,11 +58,21 @@ function errorMessage(element) {
 async function getRepos() {
   try {
     const response = await fetch(resultUrl);
-    const result = await response.json();
+    if (response.ok) {
+      const result = await response.json();
 
-    return result.items;
+      return result.items;
+    } else {
+      const li = document.createElement('li');
+      li.classList.add('repo__item');
+      li.innerHTML = `Произошла ошибка при загрузке`;
+      document.querySelector('.repo').append(li);
+    }
   } catch (error) {
-    title.append(error.toString());
+    const li = document.createElement('li');
+    li.classList.add('repo__item');
+    li.innerHTML = error;
+    document.querySelector('.repo').append(li);
   }
 }
 
@@ -71,6 +84,13 @@ async function displayRepos() {
   const data = await getRepos();
 
   repoList.innerHTML = '';
+
+  if (data?.length === 0) {
+    const li = document.createElement('li');
+    li.classList.add('repo__item');
+    li.innerHTML = `Ничего не найдено`;
+    repoList.append(li);
+  }
 
   data?.forEach((element) => {
     const name = element.name;

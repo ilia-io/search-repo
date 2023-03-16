@@ -28,9 +28,12 @@ body {
 .error {
   color: crimson;
   font-style: italic;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 3px;
+
+  position: absolute;
+  top: 25px;
+  left: 0;
 }
 
 .main {
@@ -56,14 +59,20 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.error-wrapper {
+  width: 80%;
+
+  position: relative;
+}
 .search__form > * {
   border-radius: 4px;
 }
 .search__text {
   border: 2px solid transparent;
   padding: 4px;
+  border-radius: 8px;
 
-  width: 80%;
+  width: 100%;
 }
 .search__btn {
   margin-left: 6px;
@@ -86,6 +95,7 @@ body {
   align-items: center;
 
   margin-top: 40px;
+  list-style: none;
 }
 .repo__list {
   list-style: none;
@@ -94,6 +104,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  animation-duration: 1s;
+  animation-name: opacity;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 10%;
+  }
+
+  to {
+    opacity: 100%;
+  }
 }
 .repo__item {
   background-color: #ddd;
