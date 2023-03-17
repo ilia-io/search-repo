@@ -5,8 +5,6 @@ const inputText = form.elements.text;
 let inputString = form.elements.text.value;
 const repoList = document.querySelector('.repo__list');
 
-//TODO рефактор js
-//TODO сетка карточек на большом экране
 //TODO ночная тема
 
 inputText.addEventListener('change', () => {
