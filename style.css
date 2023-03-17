@@ -26,6 +26,7 @@ body {
   font-style: italic;
   font-size: 12px;
   margin-top: 3px;
+  padding: 3px;
 
   position: absolute;
   top: 25px;
@@ -53,8 +54,10 @@ body {
 }
 .search__form {
   width: 300px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .error-wrapper {
   width: 80%;
@@ -72,10 +75,15 @@ body {
   transition: 0.3s;
 
   width: 100%;
+  height: 30px;
 }
 .search__btn {
-  margin-left: 6px;
-  width: 20%;
+  margin-left: 8px;
+  margin-top: -3px;
+  padding: 3px;
+  width: 80px;
+  height: 26px;
+  cursor: pointer;
 
   color: inherit;
   background-color: inherit;
@@ -152,6 +160,7 @@ body {
   box-shadow: 0px 2px 5px 1px gray;
 
   margin-left: 220px;
+  cursor: pointer;
 }
 .theme-switch:before {
   content: '';
