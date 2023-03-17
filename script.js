@@ -1,11 +1,13 @@
 const API_URL = 'https://api.github.com';
 let resultUrl;
 const form = document.querySelector('.search__form');
-const submitBtn = form.elements.submitBtn;
 const inputText = form.elements.text;
 let inputString = form.elements.text.value;
-const title = document.querySelector('.search__title');
 const repoList = document.querySelector('.repo__list');
+
+//TODO рефактор js
+//TODO сетка карточек на большом экране
+//TODO ночная тема
 
 inputText.addEventListener('change', () => {
   inputString = form.elements.text.value;
@@ -17,34 +19,26 @@ inputText.addEventListener('blur', () => {
 });
 
 inputText.addEventListener('focus', () => {
-  removeErrorMsg();
+  removeErrorMessage();
 });
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  removeErrorMsg();
-  if (
-    !inputText.nextElementSibling?.classList.contains('error') &&
-    inputString.length < 3
-  ) {
-    errorMessage(inputText);
-  }
+  removeErrorMessage();
 
-  if (!(inputString.length < 3)) {
-    go();
+  if (inputString.length < 3) {
+    errorMessage(inputText);
+  } else {
+    search();
   }
 });
 
-function removeErrorMsg() {
+function removeErrorMessage() {
   if (inputText.nextElementSibling?.classList.contains('error')) {
     inputText.nextElementSibling.remove();
     inputText.style.border = '2px solid transparent';
   }
-}
-
-function makeQuery(inputStr) {
-  resultUrl = `${API_URL}/search/repositories?q=${inputStr}`;
 }
 
 function errorMessage(element) {
@@ -55,28 +49,11 @@ function errorMessage(element) {
   element.style.border = '2px solid crimson';
 }
 
-async function getRepos() {
-  try {
-    const response = await fetch(resultUrl);
-    if (response.ok) {
-      const result = await response.json();
-
-      return result.items;
-    } else {
-      const li = document.createElement('li');
-      li.classList.add('repo__item');
-      li.innerHTML = `Произошла ошибка при загрузке`;
-      document.querySelector('.repo').append(li);
-    }
-  } catch (error) {
-    const li = document.createElement('li');
-    li.classList.add('repo__item');
-    li.innerHTML = error;
-    document.querySelector('.repo').append(li);
-  }
+function makeQuery(inputStr) {
+  resultUrl = `${API_URL}/search/repositories?q=${inputStr}`;
 }
 
-async function go() {
+async function search() {
   displayRepos();
 }
 
@@ -95,7 +72,6 @@ async function displayRepos() {
   data?.forEach((element) => {
     const name = element.name;
     const url = element.html_url;
-
     const description = element.description;
     const language = element.language;
     const owner = element.owner.login;
@@ -120,4 +96,22 @@ async function displayRepos() {
                   <p class="repo__owner">${owner}</p>`;
     repoList.append(li);
   });
+}
+
+async function getRepos() {
+  try {
+    const response = await fetch(resultUrl);
+    if (response.ok) {
+      const result = await response.json();
+
+      return result.items;
+    } else {
+      throw new Error('Произошла ошибка при загрузке');
+    }
+  } catch (error) {
+    const li = document.createElement('li');
+    li.classList.add('repo__item');
+    li.innerHTML = error;
+    document.querySelector('.repo').append(li);
+  }
 }
