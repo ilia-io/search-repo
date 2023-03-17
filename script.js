@@ -39,7 +39,7 @@ function switchThemes() {
     document.body.style.color = '#eee';
     document.body.style.backgroundColor = '#444';
     inputText.style.backgroundColor = '#eee';
-    cards.forEach((el) => (el.style.backgroundColor = '#666'));
+    cards.forEach((el) => (el.style.backgroundColor = '#777'));
   } else {
     document.body.style.color = '#222';
     document.body.style.backgroundColor = '#eee';
