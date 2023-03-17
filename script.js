@@ -4,8 +4,9 @@ const form = document.querySelector('.search__form');
 const inputText = form.elements.text;
 let inputString = form.elements.text.value;
 const repoList = document.querySelector('.repo__list');
+const themeSwitch = document.querySelector('.theme-switch');
 
-//TODO ночная тема
+themeSwitch.addEventListener('change', switchThemes);
 
 inputText.addEventListener('change', () => {
   inputString = form.elements.text.value;
@@ -32,6 +33,21 @@ form.addEventListener('submit', (event) => {
   }
 });
 
+function switchThemes() {
+  const cards = document.querySelectorAll('.repo__item');
+  if (themeSwitch.checked) {
+    document.body.style.color = '#eee';
+    document.body.style.backgroundColor = '#444';
+    inputText.style.backgroundColor = '#eee';
+    cards.forEach((el) => (el.style.backgroundColor = '#666'));
+  } else {
+    document.body.style.color = '#222';
+    document.body.style.backgroundColor = '#eee';
+    inputText.style.backgroundColor = '#fff';
+    cards.forEach((el) => (el.style.backgroundColor = '#ddd'));
+  }
+}
+
 function removeErrorMessage() {
   if (inputText.nextElementSibling?.classList.contains('error')) {
     inputText.nextElementSibling.remove();
@@ -44,7 +60,7 @@ function errorMessage(element) {
   msg.innerHTML = 'Заполните это поле (мин. 3 символа)';
   msg.classList.add('error');
   element.after(msg);
-  element.style.border = '2px solid crimson';
+  element.style.border = '2px solid rgb(200, 70, 70)';
 }
 
 function makeQuery(inputStr) {
@@ -94,6 +110,7 @@ async function displayRepos() {
                   <p class="repo__owner">${owner}</p>`;
     repoList.append(li);
   });
+  switchThemes();
 }
 
 async function getRepos() {
